@@ -1,5 +1,3 @@
-from doctest import FAIL_FAST
-from lib2to3.pgen2.token import NAME
 import requests
 import re 
 import random
@@ -25,13 +23,12 @@ def getstats(URL):
     elo = ""
     winrate = ""
 
-    compteur_elo  = 0
-    is_compteur_elo = False
+
+    
     rep ="lolg-cdn.porofessor.gg/img/d/summonerIcons"
     f = open("alaide.txt", "w")
 
     for i in tab:
-        # print(i)
         f.write(str(i))
         if (rep in i and is_open == False ):
             is_open = True
@@ -80,14 +77,10 @@ def getstats(URL):
 
                     best_players_winrate.append(tab)
                     winrate = ""
+                    
 
                 else:
                     winrate = winrate + i
-
-
-
-
-
 
     f.close()    
     # print(best_players_name)
@@ -101,16 +94,12 @@ def getstats(URL):
 
 def main():
     url = 'https://www.leagueofgraphs.com/rankings/summoners'
-
     best_players_name = []
     best_players_rank = []
     best_players_winrate = []
-
     best_players_name2 = []
     best_players_rank2 = []
     best_players_winrate2 = []
-
-        
     best_players_name3 = []
     best_players_rank3 = []
     best_players_winrate3 = []
@@ -124,8 +113,15 @@ def main():
 
     best_players_name = best_players_name + best_players_name2 + best_players_name3
     best_players_rank = best_players_rank + best_players_rank2 + best_players_rank3
-    best_players_winrate == best_players_winrate + best_players_winrate2 + best_players_winrate3
+    best_players_winrate = best_players_winrate + best_players_winrate2 + best_players_winrate3
 
-    print(best_players_name)
+
+    delete = len(best_players_winrate) - len(best_players_name)
+    del best_players_rank[-delete:]
+    del best_players_winrate[-delete:]
+
+    print(len(best_players_name))
+    print(len(best_players_rank))
+    print(len(best_players_winrate))
 
 main()
