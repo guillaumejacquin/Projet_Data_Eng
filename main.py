@@ -1,39 +1,131 @@
+from doctest import FAIL_FAST
+from lib2to3.pgen2.token import NAME
 import requests
 import re 
 import random
 
 # Making a GET request
-url = 'https://www.leagueofgraphs.com/rankings/summoners'
 
-headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36'}
+def getstats(URL):
+    headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36'}
+    res = requests.get(url = URL, headers = headers)
 
-res = requests.get(url = url, headers = headers)
+    tab = list(res.text.split(' '))
+    count  = 0
+    is_open = False
+    best_players_name = []
+    best_players_winrate = []
+    best_players_rank = []
 
-tab = list(res.text.split(' '))
-count  = 0
-is_open = False
-tab_var = []
-rep = 'lolg-cdnlolg-cdn.porofessor.gg'
+    is_name_taken = False
+    isrank_taken = False
+    is_number_victory = False
 
-for i in tab:
-    print(i)
-    f = open("alaide.txt", "a")
-    f.write(str(i))
-    f.close()
-    # if(i in rep and is_open == False ):
-    #     is_open = True
-    #     count = 0 
-    # if(is_open == True):
-    #     print(i)
-    #     count += 1
-    #     if(count >= 30):
-    #         is_open = False
-    #         print('--------------------------------------------------------------------------------------------------------------')
+    name = ""
+    elo = ""
+    winrate = ""
+
+    compteur_elo  = 0
+    is_compteur_elo = False
+    rep ="lolg-cdn.porofessor.gg/img/d/summonerIcons"
+    f = open("alaide.txt", "w")
+
+    for i in tab:
+        # print(i)
+        f.write(str(i))
+        if (rep in i and is_open == False ):
+            is_open = True
+            count = 0 
+        if(is_open == True):
+            if ("alt" in i):
+                is_name_taken = True
+            if (is_name_taken == True):
+                if ("title" in i):
+                    is_name_taken =False
+                    name = name.replace('alt="', "")
+                    name = name[:-1]
+                    best_players_name.append(name)
+                    name = ""
+
+                else:
+                    name = name + i
+
+            if ("summonerTier" in i):
+                isrank_taken = True
+            if (isrank_taken == True):
+                if "wins" in i:
+                    isrank_taken = False
+                    elo = elo.replace('class="summonerTier">', "")
+                    elo = elo[:-12]
+                    elo = elo.strip()
+                    elo= elo.rstrip()
+
+                    tab = list(elo.split('\n'))
+                    best_players_rank.append(tab)
+                    elo = ""
+                else:
+                    elo = elo + i
+
+            if "wins" in i:
+                is_number_victory = True
+
+            if(is_number_victory == True):
+                if "</div>" in i:
+                    is_number_victory = False
+                    winrate = winrate.replace('class="wins">', "").replace("(","").replace("%)", "")
+                    winrate = winrate[1:-5]
+                    winrate = winrate.rstrip()
+                    tab = list(winrate.split('<i>'))
+                    
+
+                    best_players_winrate.append(tab)
+                    winrate = ""
+
+                else:
+                    winrate = winrate + i
 
 
 
 
 
-# f = open("zizi.txt", "a")
-# f.write(str(res.content))
-# f.close()
+
+    f.close()    
+    # print(best_players_name)
+    # print(best_players_rank)
+    # print(best_players_winrate)
+    return(best_players_name, best_players_rank, best_players_winrate)
+
+
+
+
+
+def main():
+    url = 'https://www.leagueofgraphs.com/rankings/summoners'
+
+    best_players_name = []
+    best_players_rank = []
+    best_players_winrate = []
+
+    best_players_name2 = []
+    best_players_rank2 = []
+    best_players_winrate2 = []
+
+        
+    best_players_name3 = []
+    best_players_rank3 = []
+    best_players_winrate3 = []
+
+    best_players_name, best_players_rank, best_players_winrate = getstats(url)
+    url = "https://www.leagueofgraphs.com/fr/rankings/summoners/page-2"
+    best_players_name2, best_players_rank2, best_players_winrate2 = getstats(url)
+
+    url = "https://www.leagueofgraphs.com/fr/rankings/summoners/page-3"
+    best_players_name3, best_players_rank3, best_players_winrate3 = getstats(url)
+
+    best_players_name = best_players_name + best_players_name2 + best_players_name3
+    best_players_rank = best_players_rank + best_players_rank2 + best_players_rank3
+    best_players_winrate == best_players_winrate + best_players_winrate2 + best_players_winrate3
+
+    print(best_players_name)
+
+main()
