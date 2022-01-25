@@ -1,4 +1,3 @@
-import urllib.request
 import re
 import requests
 
@@ -101,7 +100,7 @@ def main():
     iscountered_name = []
     iscountered_golds =[]
 
-    iscountered_name, iscountered_golds, counter_name, counter_golds =  counter("garen")
+    iscountered_name, iscountered_golds, counter_name, counter_golds =  counter("zeri")
 
     print(iscountered_name)
     print(counter_name)
