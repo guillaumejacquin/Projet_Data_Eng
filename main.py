@@ -26,10 +26,10 @@ def getstats(URL):
 
     
     rep ="lolg-cdn.porofessor.gg/img/d/summonerIcons"
-    f = open("alaide.txt", "w")
+    # f = open("alaide.txt", "w")
 
     for i in tab:
-        f.write(str(i))
+        # f.write(str(i))
         if (rep in i and is_open == False ):
             is_open = True
             count = 0 
@@ -82,17 +82,13 @@ def getstats(URL):
                 else:
                     winrate = winrate + i
 
-    f.close()    
-    # print(best_players_name)
-    # print(best_players_rank)
-    # print(best_players_winrate)
     return(best_players_name, best_players_rank, best_players_winrate)
 
 
 
 
 
-def main():
+def getbestplayers():
     url = 'https://www.leagueofgraphs.com/rankings/summoners'
     best_players_name = []
     best_players_rank = []
@@ -124,4 +120,4 @@ def main():
     print(len(best_players_rank))
     print(len(best_players_winrate))
 
-main()
+getbestplayers()
