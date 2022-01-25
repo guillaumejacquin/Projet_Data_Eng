@@ -2,56 +2,14 @@ import urllib.request
 import re
 import requests
 
-
-def list_champions(champion):
-    if (champion == "Kogmaw"):
-        return "KogMaw"
-    elif (champion == "Aurelionsol"):
-        return "AurelionSol"
-    elif (champion == "Leesin"):
-        return "LeeSin"
-    elif (champion == "Xinzhao"):
-        return "XinZhao" 
-    elif (champion == "Twistedfate"):
-        return "Twistedfate"
-    elif  (champion == "Tahmkench"):
-        return "TahmKench" 
-    elif (champion == "Masteryi"):
-        return "MasterYi"
-    elif (champion == "Drmundo"):
-        return "DrMundo"
-    elif (champion == "Reksai"):
-        return "RekSai"
-    elif (champion == "Missfortune"):
-        return "MissFortune"
-    elif (champion == "Wukong"):
-        return "MonkeyKing"
-    else: return champion
-
-def list_role(poste):
-    if (poste == "mid"):
-        return "middle"
-    elif (poste == "supp"):
-        return "support"
-    elif (poste == "bot"):
-        return "adc"
-    elif (poste == "jgl"):
-        return "jungle"
-    else:return(poste)
-
-
 def counter(*champion):
     f = open("demofile3.txt", "a")
-
     champion = " ".join(champion)
     champ = champion.split()
     perso = champ[0]
     poste = ""
     count = 0
-
     counters = []
-
-
     URL = 'https://www.leagueofgraphs.com/fr/champions/counters/'
     URL = URL + champion
     headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36'}
@@ -62,13 +20,9 @@ def counter(*champion):
     perdcontre = 0
     compteur = 0
     compteur_true = False
-
     compteur_perdant_true = False
-
     counter = ""
     counter_gold = ""
-
-
     loser = ""
     loser_gold = ""
     loserinformation = []
@@ -137,13 +91,6 @@ def counter(*champion):
             perdcontre = 1
             compteur_perdant_true = False
 
-
-    # print(counters_informations)
-    # print(counter_golds_informations)
-
-    # print(loserinformation)
-    # print(loserinformationgold)
-
     return(counters_informations, counter_golds_informations, loserinformation, counter_golds_informations)
 
 
@@ -158,7 +105,6 @@ def main():
 
     print(iscountered_name)
     print(counter_name)
-# f = open("demofile2.txt", "a")
 
 
 
