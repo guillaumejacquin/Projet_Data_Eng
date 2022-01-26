@@ -1,6 +1,7 @@
 import requests
 import re 
 import random
+import pandas as pd
 
 # Making a GET request
 
@@ -116,8 +117,20 @@ def getbestplayers():
     del best_players_rank[-delete:]
     del best_players_winrate[-delete:]
 
-    print(len(best_players_name))
-    print(len(best_players_rank))
-    print(len(best_players_winrate))
+    # print(len(best_players_name))
+    # print(len(best_players_rank))
+    # print(len(best_players_winrate))
+
+
+    df_1 = pd.DataFrame(best_players_name, columns = ['Name'])
+    df_2 = pd.DataFrame(best_players_rank, columns = ['Rank', 'Lp'])
+    df_3 = pd.DataFrame(best_players_winrate, columns = ['Wins', 'Winrate'])
+
+    df_merged = pd.concat([df_1,df_2,df_3], axis = 1)
+
+    print(df_merged.head())
+    
+
+
 
 getbestplayers()

@@ -9,9 +9,22 @@ import plotly_express as px
 @app.route("/")
 def index():
 
-    # first graph
-    # df = px.data//
-    # fig1 = //
-    #graphjson
+    return render_template("index.html", title = "Home")
+
+@app.route("/Best Players")
+def Best_players():
+    
+
+    return render_template("best_players.html", title = "Home")
+
+@app.route("/Counters")
+def Counters():
+    
+
+    return render_template("counters.html", title = "Home")
+
+@app.route("/Dashboard")
+def Dashboard():
+    
 
     return render_template("index.html", title = "Home")
