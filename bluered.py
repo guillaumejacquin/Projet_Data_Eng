@@ -26,11 +26,7 @@ def blueandredstats(stats):
     compteur = -1
 
 
-    f = open("demofilea.txt", "w")
     for i in tab:
-        f.write(i)
-
-
         if ('%' in i):
             compteur += 1
             if (compteur == 0):
@@ -51,7 +47,6 @@ def blueandredstats(stats):
             if compteur == 7:
                 stats.aram_red = i
 
-    f.close()
 
 
 def stats():
@@ -75,6 +70,5 @@ def stats():
 
     df.T
 
-    print(df)
     return(df)
 

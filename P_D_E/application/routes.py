@@ -23,7 +23,7 @@ def callback_counter(champion):
 
     iscountered_name, iscountered_golds, counter_name, counter_golds =  counter(champion)
 
-=
+
 @app.route("/")
 def index():
 
@@ -45,19 +45,22 @@ def Best_players():
 
 @app.route("/Counters")
 def Counters():
-    
+
     return render_template("counters.html", title = "Home")
 
 
+# @app.route("/Dashboard")
+# def Dashboard():
+#     bestplayers = getbestplayers()
+#     return render_template("index.html", title = "Home")
+
+
 @app.route("/Dashboard")
-def Dashboard():
-    bestplayers = getbestplayers()
-    return render_template("index.html", title = "Home")
-
-
-@app.route("/Blue-Stats")
 def Stats():
-    stats = stats()
+    print("??,")
+    stats_faille = stats()
+    print(stats_faille)
+    
 
     # print(stats)    
     return render_template("index.html", title = "Home")
