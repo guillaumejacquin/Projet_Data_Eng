@@ -54,7 +54,7 @@ def blueandredstats(stats):
     f.close()
 
 
-def stats():
+def stats_blue():
     stats = BlueRed()
     blueandredstats(stats)
 

@@ -59,9 +59,6 @@ def Counters():
 
 
     
-    
-    # print("EHHHHHHHHHHHHHH")
-    # print(request.form)
     if len(counter_name) == 0:
         champs_counter_str = " "
     else:
@@ -83,16 +80,16 @@ def Counters():
     return render_template("counters.html", champion=champs_countered_str, champion_1 = champs_counter_str)
 
 
+# @app.route("/Dashboard")
+# def Dashboard():
+#     bestplayers = getbestplayers()
+#     return render_template("index.html", title = "Home")
+
+
 @app.route("/Dashboard")
-def Dashboard():
-    bestplayers = getbestplayers()
-    return render_template("index.html", title = "Home")
+def Saats():
+    stats = stats_blue()
 
-
-@app.route("/Blue-Stats")
-def Stats():
-    stats = Stats()
-
-    # print(stats)    
+    print(stats)    
     return render_template("index.html", title = "Home")
 
