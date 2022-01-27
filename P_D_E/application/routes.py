@@ -80,14 +80,14 @@ def Counters():
     return render_template("counters.html", champion=champs_countered_str, champion_1 = champs_counter_str)
 
 
-# @app.route("/Dashboard")
-# def Dashboard():
-#     bestplayers = getbestplayers()
-#     return render_template("index.html", title = "Home")
-
-
 @app.route("/Dashboard")
-def Saats():
+def Dashboard():
+    bestplayers = getbestplayers()
+    return render_template("index.html", title = "Home")
+
+
+@app.route("/blue-red")
+def stats_blue_red():
     stats = stats_blue()
 
     print(stats)    
