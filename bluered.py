@@ -49,7 +49,7 @@ def blueandredstats(stats):
 
 
 
-def stats():
+def stats_blue():
     stats = BlueRed()
     blueandredstats(stats)
 

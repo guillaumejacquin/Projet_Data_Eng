@@ -1,4 +1,62 @@
 {% extends "layout.html" %}
 {% block content %}
-<h3>Counters</h3>
+<style>
+body{
+    background:#454840;
+}
+form{
+    background:#5db2e4;
+    padding:30px;
+    width:500px;
+    margin:auto;
+    font-size:20px;
+    color:white;
+    font-family:Verdana;
+}
+input{
+    width:100%;
+    padding:10px;
+    margin-top:20px;
+    font-size:18px;
+    font-family:Verdana;
+    border:none;
+}
+input[type=submit]{
+    width:30%;
+    margin-left:100px;
+    background:#531ddb;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:5px;
+}
+
+
+
+
+</style>
+
+<form action="/Counters" method="post"> 
+
+    <!-- <h2>Choose a champion to know his counters</h2> -->
+
+    <label for="username"></label><br>
+    <input type="text" name="counters" id="counters" placeholder="Search the counters">
+    <input type="submit" value="Search">
+
+    {% if champion %}
+    
+        <h2> {{champion}}</h2>
+
+    {% endif %}
+    
+    {% if champion_1 %}
+    
+    <h2> {{champion_1}}</h2>
+    
+    {% endif %}
+</form>
+
+
+
 {% endblock %}
