@@ -102,10 +102,10 @@ def main():
 
     iscountered_name, iscountered_golds, counter_name, counter_golds =  counter("zeri")
 
-    print(iscountered_name)
-    print(counter_name)
+    # print(iscountered_name)
+    # print(counter_name)
 
 
 
 
-main()
+# main()

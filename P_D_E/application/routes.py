@@ -6,6 +6,23 @@ import json
 import plotly
 import plotly_express as px
 
+import sys
+
+sys.path.append("../")
+from getcounters import counter
+from main import getbestplayers
+from bluered import *
+
+def callback_counter(champion):
+    counter_name = []
+    counter_golds =[]
+    iscountered_name = []
+    iscountered_golds = []
+
+    iscountered_name, iscountered_golds, counter_name, counter_golds =  counter("zeri")
+
+    # print(iscountered_name, iscountered_golds, counter_name)
+
 @app.route("/")
 def index():
 
@@ -14,17 +31,39 @@ def index():
 @app.route("/Best Players")
 def Best_players():
     
+    counter_name = []
+    counter_golds =[]
+    iscountered_name = []
+    iscountered_golds =[]
 
+    iscountered_name, iscountered_golds, counter_name, counter_golds =  counter("zeri")
+
+    # print(iscountered_name, iscountered_golds, counter_name)
+    # return render_template("counters.html", title = "Home")
     return render_template("best_players.html", title = "Home")
 
 @app.route("/Counters")
 def Counters():
-    
+    counter_name = []
+    counter_golds =[]
+    iscountered_name = []
+    iscountered_golds =[]
 
+    iscountered_name, iscountered_golds, counter_name, counter_golds =  counter("zeri")
+
+    # print(iscountered_name, iscountered_golds, counter_name)
     return render_template("counters.html", title = "Home")
+
 
 @app.route("/Dashboard")
 def Dashboard():
-    
+    bestplayers = getbestplayers()
+    return render_template("index.html", title = "Home")
 
+
+@app.route("/Blue-Stats")
+def Stats():
+    stats = stats()
+
+    # print(stats)    
     return render_template("index.html", title = "Home")
