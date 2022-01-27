@@ -13,16 +13,17 @@ from getcounters import counter
 from main import getbestplayers
 from bluered import *
 
+
+@app.route('/GetCounters', methods=['POST'])
 def callback_counter(champion):
     counter_name = []
     counter_golds =[]
     iscountered_name = []
     iscountered_golds = []
 
-    iscountered_name, iscountered_golds, counter_name, counter_golds =  counter("zeri")
+    iscountered_name, iscountered_golds, counter_name, counter_golds =  counter(champion)
 
-    # print(iscountered_name, iscountered_golds, counter_name)
-
+=
 @app.route("/")
 def index():
 
@@ -44,14 +45,7 @@ def Best_players():
 
 @app.route("/Counters")
 def Counters():
-    counter_name = []
-    counter_golds =[]
-    iscountered_name = []
-    iscountered_golds =[]
-
-    iscountered_name, iscountered_golds, counter_name, counter_golds =  counter("zeri")
-
-    # print(iscountered_name, iscountered_golds, counter_name)
+    
     return render_template("counters.html", title = "Home")
 
 
