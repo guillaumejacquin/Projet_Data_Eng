@@ -127,7 +127,7 @@ def getbestplayers():
 
     df_merged = pd.concat([df_1,df_2,df_3], axis = 1)
 
-    print(df_merged)
+    #print(df_merged)
     return(df_merged)
     
 

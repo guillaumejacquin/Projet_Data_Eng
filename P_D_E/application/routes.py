@@ -10,7 +10,7 @@ import sys
 
 sys.path.append("../")
 from P_D_E.application.getcounters import counter
-from main import getbestplayers
+from P_D_E.application.best_players import getbestplayers
 from bluered import *
 
 
@@ -62,20 +62,21 @@ def Counters():
     if len(counter_name) == 0:
         champs_counter_str = " "
     else:
-        champs_counter_str = champion_search["counters"] + " is countered by :"
+        champs_counter_str = champion_search["counters"] + " is countered by : "
 
     for champs_1 in counter_name:
-        champs_counter_str += champs_1 +" "
+        champs_counter_str += champs_1 + " ."
 
 
-
+    
     if len(iscountered_name) == 0:
         champs_countered_str = " "
     else:
         champs_countered_str = champion_search["counters"] + "  counter : "
 
+
     for champs in iscountered_name:
-        champs_countered_str += champs +" "
+        champs_countered_str += champs + " ." 
 
     return render_template("counters.html", champion=champs_countered_str, champion_1 = champs_counter_str)
 
