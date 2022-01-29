@@ -144,14 +144,13 @@ def getbestplayers():
         collection.update_one({"_id" : 3 }, {"$set" : {"Rank_Lp" : best_players_rank}})
         collection.update_one({"_id" : 4 }, {"$set" : {"Wins_winrate" : best_players_winrate}})
     except Exception : 
-        print("pouetpouet")
         pass
     
 
 
 
 
-    # return(df_merged)
+    return(df_merged)
     
     
 

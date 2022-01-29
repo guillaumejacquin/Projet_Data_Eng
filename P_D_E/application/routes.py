@@ -41,15 +41,8 @@ def index():
 @app.route("/Best Players")
 def Best_players():
     
-    counter_name = []
-    counter_golds =[]
-    iscountered_name = []
-    iscountered_golds =[]
-
-    iscountered_name, iscountered_golds, counter_name, counter_golds =  counter("zeri")
-
-    # print(iscountered_name, iscountered_golds, counter_name)
-    # return render_template("counters.html", title = "Home")
+    test = getbestplayers()
+    print(test)
     return render_template("best_players.html", title = "Home")
 
 @app.route("/Counters", methods=['get','post'])
