@@ -62,7 +62,7 @@ def Counters():
     if len(counter_name) == 0:
         champs_counter_str = " "
     else:
-        champs_counter_str = champion_search["counters"] + " counter : "
+        champs_counter_str = champion_search["counters"] + " is countered by :"
 
     for champs_1 in counter_name:
         champs_counter_str += champs_1 +" "
@@ -72,7 +72,7 @@ def Counters():
     if len(iscountered_name) == 0:
         champs_countered_str = " "
     else:
-        champs_countered_str = champion_search["counters"] + " is countered by : "
+        champs_countered_str = champion_search["counters"] + "  counter : "
 
     for champs in iscountered_name:
         champs_countered_str += champs +" "
@@ -91,5 +91,6 @@ def stats_blue_red():
     stats = stats_blue()
 
     print(stats)    
-    return render_template("index.html", title = "Home")
+    return render_template("blue-red.html", title = "Home")
+
 
