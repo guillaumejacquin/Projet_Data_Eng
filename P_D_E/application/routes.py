@@ -11,7 +11,17 @@ import sys
 sys.path.append("../")
 from P_D_E.application.getcounters import counter
 from P_D_E.application.best_players import getbestplayers
-from bluered import *
+from P_D_E.application.bluered import *
+
+import pymongo
+from pymongo import MongoClient
+
+cluster = MongoClient("mongodb+srv://guigui:1234@cluster0.eeflg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+
+db = cluster["leagueoflegends"]
+collection_best_player = db["personnageslol"]
+Counters_lol = db["counters"]
+blue_red_lol = db["blue_red"]
 
 
 @app.route('/GetCounters', methods=['POST'])
@@ -44,7 +54,15 @@ def Best_players():
 
 @app.route("/Counters", methods=['get','post'])
 def Counters():
+    
+    # db base counters ~>
+    db = Counters_lol.find_one({"_id": 1})
+    db_1 = Counters_lol.find_one({"_id": 0})
 
+    loser = db["loser"]
+    winner = db_1["winner"]
+    # db base counters <~
+    
     champion_search = request.form.to_dict()
 
     counter_name = []
@@ -77,6 +95,13 @@ def Counters():
 
     for champs in iscountered_name:
         champs_countered_str += champs + " ." 
+
+    try:
+        if len(loser and winner) < 0:
+            print("return")
+    except Exception:
+        pass
+
 
     return render_template("counters.html", champion=champs_countered_str, champion_1 = champs_counter_str)
 

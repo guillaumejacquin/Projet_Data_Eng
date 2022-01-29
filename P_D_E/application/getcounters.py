@@ -1,5 +1,12 @@
 import re
 import requests
+import pymongo
+from pymongo import MongoClient
+
+cluster = MongoClient("mongodb+srv://guigui:1234@cluster0.eeflg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+
+db = cluster["leagueoflegends"]
+collection = db["counters"]
 
 def counter(*champion):
     #f = open("demofile3.txt", "a")
@@ -91,6 +98,12 @@ def counter(*champion):
         if ("meilleur" in i and gagnecontre == 1):
             perdcontre = 1
             compteur_perdant_true = False
+    
+    try:
+        collection.update_one({"_id" : 0 }, {"$set" : {"winner" : loserinformation}})
+        collection.update_one({"_id" : 1 }, {"$set" : {"loser" : counters_informations}})
+    except Exception : 
+        pass
 
     return(counters_informations, counter_golds_informations, loserinformation, counter_golds_informations)
 
@@ -104,10 +117,5 @@ def main(champion):
 
     iscountered_name, iscountered_golds, counter_name, counter_golds =  counter(champion)
 
-    #print(iscountered_name)
-    #print(counter_name)
-
-
-
-
-main('ekko')
+    # print(iscountered_name)
+    # print(counter_name)

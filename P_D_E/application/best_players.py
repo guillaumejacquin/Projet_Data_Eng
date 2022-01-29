@@ -1,7 +1,18 @@
+from unittest import expectedFailure
 import requests
 import re 
 import random
 import pandas as pd
+
+
+import pymongo
+from pymongo import MongoClient
+
+cluster = MongoClient("mongodb+srv://guigui:1234@cluster0.eeflg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+
+db = cluster["leagueoflegends"]
+collection = db["personnageslol"]
+
 
 # Making a GET request
 
@@ -128,9 +139,19 @@ def getbestplayers():
     df_merged = pd.concat([df_1,df_2,df_3], axis = 1)
 
     #print(df_merged)
-    return(df_merged)
+    try:
+        collection.update_one({"_id" : 2 }, {"$set" : {"Name" : best_players_name}})
+        collection.update_one({"_id" : 3 }, {"$set" : {"Rank_Lp" : best_players_rank}})
+        collection.update_one({"_id" : 4 }, {"$set" : {"Wins_winrate" : best_players_winrate}})
+    except Exception : 
+        print("pouetpouet")
+        pass
     
 
+
+
+
+    # return(df_merged)
     
     
 
