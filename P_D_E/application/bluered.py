@@ -85,7 +85,7 @@ def stats_blue():
         print(tab) 
         pass
 
-    return(df)
+    return(tab)
 
 
 stats_blue()

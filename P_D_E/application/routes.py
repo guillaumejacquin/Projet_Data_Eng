@@ -38,13 +38,6 @@ def index():
 
     return render_template("index.html", title = "Home")
 
-@app.route("/Best Players")
-def Best_players():
-    
-    test = getbestplayers()
-    print(test)
-    return render_template("best_players.html", title = "Home")
-
 @app.route("/Counters", methods=['get','post'])
 def Counters():
     
@@ -104,12 +97,26 @@ def Dashboard():
     bestplayers = getbestplayers()
     return render_template("index.html", title = "Home")
 
+@app.route("/Best Players")
+def Best_players():
+    
+    test = getbestplayers()
+    #print(test)
+
+    return render_template("best_players.html", best_players=test)
+
+
+
+
 
 @app.route("/blue-red")
 def stats_blue_red():
     stats = stats_blue()
 
-    print(stats)    
-    return render_template("blue-red.html", title = "Home")
+
+    #print(stats)    
+
+    stats_blue
+    return render_template("blue-red.html", stats_blue=stats)
 
 

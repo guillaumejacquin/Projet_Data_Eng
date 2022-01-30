@@ -138,6 +138,8 @@ def getbestplayers():
 
     df_merged = pd.concat([df_1,df_2,df_3], axis = 1)
 
+    # print(df_merged.iloc[0,0]) 
+
     #print(df_merged)
     try:
         collection.update_one({"_id" : 2 }, {"$set" : {"Name" : best_players_name}})
